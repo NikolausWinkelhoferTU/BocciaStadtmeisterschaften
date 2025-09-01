@@ -6,6 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boccia Stadtmeisterschaften</title>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script>
+  const form = document.getElementById("agb-form");
+  const agb = document.getElementById("agb");
+  const loader = document.getElementById("loader");
+  const qrContainer = document.getElementById("qrcode");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    if (!agb.checked) {
+      alert("Bitte akzeptiere die AGB, um fortzufahren.");
+      return;
+    }
+
+    // Ladeanimation zeigen
+    loader.classList.remove("hidden");
+    qrContainer.classList.add("hidden");
+    qrContainer.innerHTML = "";
+
+    // Nach 2 Sekunden zufälligen QR-Code anzeigen
+    setTimeout(() => {
+      loader.classList.add("hidden");
+      qrContainer.classList.remove("hidden");
+
+      const randomData = "QR-" + Math.random().toString(36).substring(2, 10);
+      QRCode.toCanvas(randomData, { width: 200 }, (err, canvas) => {
+        if (!err) {
+          qrContainer.appendChild(canvas);
+        }
+      });
+    }, 2000);
+  });
+</script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const countdownBox = document.getElementById('countdown-box');
@@ -850,7 +885,7 @@
 
     <!-- Updated Navigation -->
     <nav>
-        <a href="/"class="nav-logo-container "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+        <div class="nav-logo-container cursor-pointer" onclick="scrollToTop()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
   <defs>
     <path id="text-path-0" d="M 191.71500205993652 221.0747833251953 Q 251.0290584564209 188.79994583129883 310.3431148529053 221.0747833251953"></path>
   </defs>
@@ -861,7 +896,7 @@
     <path d="M142.248 180.443c1.814 0 3.293-1.457 3.293-3.275s-1.479-3.281-3.293-3.281v.314c1.629 0 2.939 1.328 2.949 2.967 0 1.648-1.32 2.975-2.949 2.975v.3z" style="fill: rgb(255, 255, 255);"></path>
   </g>
   <text style="fill: rgb(255, 255, 255); font-family: &quot;Gill Sans MT&quot;; font-size: 28px; font-weight: 700; text-transform: uppercase; white-space: pre; transform-box: fill-box; transform-origin: 67.3321px 23.8442px;" transform="matrix(1, 0, 0, 1, 4.924774, -12.041391)"><textPath href="#text-path-0">Boccia</textPath></text>
-</svg></a>
+</svg></div>
         <div class="nav-menu">
             <ul>
                 <li><a href="#teams">Teams</a></li>
@@ -1255,6 +1290,15 @@
                 icon.textContent = '▼';
             }
         }
+
+
+
+function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // für sanftes Scrollen
+    });
+  }
 
         // Voting logic
 function vote(team) {
