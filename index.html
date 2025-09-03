@@ -900,6 +900,35 @@
     0% { transform: rotate(0deg);}
     100% { transform: rotate(360deg);}
 }
+
+
+.winner-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* Abstand zwischen Pokal und Text */
+  margin-bottom: 6rem;
+}
+
+.trophy {
+  font-size: 3rem;   /* Pokale größer machen */
+}
+
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  60%  { background-position: -100% 0; } /* Animation läuft schnell in 20% der Zeit */
+  100% { background-position: -100% 0; } /* bleibt dann stehen bis zum Ende */
+}
+
+.winner-text {
+  background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: shimmer 2.5s linear infinite; /* 3,5s pro Durchlauf (0,5s Animation + 3s Pause) */
+}
     </style>
 </head>
 
@@ -944,7 +973,12 @@
 
         <div class="hero-content">
                 <h1>Boccia <br>Stadtmeisterschaften</h1>
-                <p>2. September 2026 | 16:30 | Sporthalle Waidhofen/Ybbs</p>
+                <h2 class="winner-heading">
+  <span class="trophy">🏆</span>
+  <span class="winner-text">Flos Voda - Champion 2025</span>
+  <span class="trophy">🏆</span>
+</h2>
+                
                 
                 <div class="countdown-box" id="countdown-box">
                     <div id="countdown-text" class="countdown-text"></div>
@@ -952,6 +986,7 @@
                         LIVE <span class="live-dot"></span>
                     </div>
                 </div>
+                <p>2. September 2026 | 16:30 | Sporthalle Waidhofen/Ybbs</p>
 
                 <button class="btn-cta" onclick="document.getElementById('agb').scrollIntoView({behavior:'smooth'})">Anmelden</button>
     </section>
