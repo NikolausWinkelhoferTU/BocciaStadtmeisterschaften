@@ -48,7 +48,7 @@
             const countdownBox = document.getElementById('countdown-box');
             const countdownText = document.getElementById('countdown-text');
             const liveIndicator = document.getElementById('live-indicator');
-            const targetDate = new Date('2025-09-02T16:30:00');
+            const targetDate = new Date('2026-09-02T16:30:00');
 
             function updateCountdown() {
                 const now = new Date();
@@ -65,7 +65,7 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                countdownText.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                countdownText.textContent = ` ${days}d ${hours}h ${minutes}m ${seconds}s`;
             }
 
             setInterval(updateCountdown, 1000);
@@ -131,6 +131,39 @@
             background: radial-gradient(circle at center, #FFD700 0%, transparent 70%);
             animation-delay: 0s;
         }
+
+        .title {
+  position: relative;
+  line-height: 1.1;
+  color: gold;
+}
+
+.title .cap {
+  position: relative;
+  display: inline-block;
+}
+
+/* Goldene Krone über dem F, um 45° gedreht */
+.title .cap::before {
+  content: "👑";                 /* alternativ per SVG, siehe Hinweis unten */
+  position: absolute;
+  font-size: 20px;               /* Größe der Krone */
+  left: -7px;                    /* horizontale Feinanpassung */
+  top: -20px;                    /* vertikale Feinanpassung */
+  transform: rotate(-45deg);
+  transform-origin: 60% 130%;
+  pointer-events: none;
+}
+
+/* Optional: leicht responsive tweaken */
+@media (min-width: 640px) {
+  .title .cap::before {
+    font-size: 30px;
+    left: -8px;
+    top: -32px;
+  }
+}
+
 
         .blob-2 {
             width: 60vw;
@@ -911,7 +944,7 @@
 
         <div class="hero-content">
                 <h1>Boccia <br>Stadtmeisterschaften</h1>
-                <p>2. September 2025 | 16:30 | Sporthalle Waidhofen/Ybbs</p>
+                <p>2. September 2026 | 16:30 | Sporthalle Waidhofen/Ybbs</p>
                 
                 <div class="countdown-box" id="countdown-box">
                     <div id="countdown-text" class="countdown-text"></div>
@@ -955,28 +988,39 @@
 
             <!-- Team 2 -->
             <div class="team-container">
-    <h3 style="text-align:center; margin-bottom:35px;">Team Florian Proccia</h3>
+    <h3 class="title" style="text-align:center; margin-bottom:35px;">
+    <span class="cap">F</span>los Voda
+  </h3>
     <div class="grid">
         <div class="player-card team-precision layout-right" onclick="openModal('Phips Bocciahacker')">
             <div class="player-photo" style="background-image: url('images/phipsbocciahacker.png')"></div>
             <div class="content-wrapper">
-                <p class="player-name2">Phips Bocciahacker</p>
-
-            </div>
+  <p class="player-name2" 
+     style="color: gold; font-weight: bold; text-shadow: 0 0 5px gold, 0 0 10px orange, 0 0 20px white;">
+     Phips Bocciahacker 🏆
+  </p>
+</div>
         </div>
         <div class="player-card team-precision layout-right" onclick="openModal('Florian Proccia')">
             <div class="player-photo" style="background-image: url('images/florianproccia.png')"></div>
+            
             <div class="content-wrapper">
-                <p class="player-name2">Florian Proccia</p>
-
-            </div>
+  <p class="player-name2" 
+     style="color: gold; font-weight: bold; text-shadow: 0 0 5px gold, 0 0 10px orange, 0 0 20px white;">
+     Florian Proccia 🏆
+  </p>
+</div>
         </div>
         <div class="player-card team-precision layout-right" onclick="openModal('Patrick Wroccia')">
             <div class="player-photo" style="background-image: url('images/patrickwroccia.png')"></div>
-            <div class="content-wrapper">
-                <p class="player-name2">Patrick Wroccia</p>
+            
 
-            </div>
+            <div class="content-wrapper">
+  <p class="player-name2" 
+     style="color: gold; font-weight: bold; text-shadow: 0 0 5px gold, 0 0 10px orange, 0 0 20px white;">
+     Patrick Wroccia 🏆
+  </p>
+</div>
         </div>
     </div>
 </div>
